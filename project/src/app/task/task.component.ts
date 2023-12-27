@@ -9,7 +9,7 @@ import { Task } from './Task';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  task: Task = new Task(0, '', '', new Date(), '', '', '');  
+  task: Task = new Task(0, '', '', new Date(), '', '', );  
   tasks: Task[] = [];
 
   constructor(private taskService: TaskService) {}
@@ -19,19 +19,20 @@ export class TaskComponent implements OnInit {
   }
 
   addTask(): void {
-    const taskId = this.tasks.length > 0 ? this.tasks[this.tasks.length - 1].id + 1 : 1;
+    const taskId = this.tasks.length + 1;
     const newTask = new Task(
       taskId,
       this.task.name,
       this.task.description,
       this.task.deadline,
       this.task.owner,
-      this.task.file,  
-      this.task.state
+      this.task.state,
+      this.task.file  
+      
     );
     this.taskService.addTask(newTask).subscribe(() => {
       this.loadTasks();
-      this.task = new Task(0, '', '', new Date(), '', '', ''); 
+      this.task = new Task(0, '', '', new Date(), '', '', ); 
     });
   }
 

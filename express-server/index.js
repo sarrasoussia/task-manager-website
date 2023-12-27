@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'your_mysql_username',
-  password: 'your_mysql_password',
-  database: 'mytasks',
+  user: 'root',
+  password: '',
+  database: 'task_manager_db',
 });
 
 connection.connect((err) => {
